@@ -6,6 +6,7 @@
 <p align="center">
   <img src="screenshots/banner-fa.png" alt="پاک‌کننده اسپات - افزونه کروم" width="100%">
 </p>
+
 [English README](README.md)
 
 ## امکانات
