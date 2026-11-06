@@ -3,7 +3,9 @@
 A Chrome extension (Manifest V3) for comparing SpotPlayer course lessons with locally downloaded `.spot` files and safely quarantining selected extra files.
 
 **Current version:** `0.2.3` · **Status:** Beta / community testing
-
+<p align="center">
+  <img src="screenshots/banner.png" alt="Spot Cleaner - Chrome Extension" width="100%">
+</p>
 [راهنمای فارسی](README_FA.md)
 
 ## Features
