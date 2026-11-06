@@ -3,7 +3,9 @@
 افزونهٔ کروم مبتنی بر Manifest V3 برای تطبیق جلسات دوره‌های SpotPlayer با فایل‌های محلی `.spot` و انتقال فایل‌های اضافی انتخاب‌شده به پوشهٔ قرنطینه.
 
 **نسخهٔ فعلی:** `0.2.3` · **وضعیت:** آزمایشی (Beta)
-
+<p align="center">
+  <img src="screenshots/banner-fa.png" alt="پاک‌کننده اسپات - افزونه کروم" width="100%">
+</p>
 [English README](README.md)
 
 ## امکانات
