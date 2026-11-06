@@ -6,6 +6,7 @@ A Chrome extension (Manifest V3) for comparing SpotPlayer course lessons with lo
 <p align="center">
   <img src="screenshots/banner.png" alt="Spot Cleaner - Chrome Extension" width="100%">
 </p>
+
 [راهنمای فارسی](README_FA.md)
 
 ## Features
