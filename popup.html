@@ -1,20 +1,96 @@
 <!doctype html>
-<html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Spot Cleaner</title><link rel="stylesheet" href="popup.css"></head>
-<body><main class="app">
-<header class="top"><img src="icons/icon48.png" class="logo" alt="Spot Cleaner"><div><h1>Spot Cleaner</h1><p>تطبیق و مدیریت فایل‌های SpotPlayer</p></div><span class="version">0.2.3</span></header>
-<section class="card"><div class="head"><h2>دوره شناسایی‌شده</h2><span id="pageState" class="pill">در انتظار</span></div><div id="courseTitle" class="course">برای شروع، صفحه یک دوره SpotPlayer را باز کن.</div><div id="courseMeta" class="muted">جلسات پس از شناسایی صفحه نمایش داده می‌شوند.</div><button id="extractBtn" class="btn secondary">↻　شناسایی دوباره صفحه</button></section>
-<section class="card"><h2>بررسی فایل‌ها</h2><p class="muted">پوشه اصلی فایل‌های SPOT را انتخاب کن. زیرپوشه‌ها نیز بررسی می‌شوند.</p><button id="folderBtn" class="btn primary">▣　انتخاب پوشه و بررسی</button><div id="folderMeta" class="muted">هنوز پوشه‌ای انتخاب نشده است.</div></section>
-<section id="summary" class="stats hidden"><div><b id="matchedCount">0</b><span>موجود</span></div><div><b id="missingCount">0</b><span>مفقود</span></div><div><b id="extraCount">0</b><span>اضافی</span></div></section>
-<section class="card"><div class="head"><h2>نتایج تطبیق</h2><button id="csvBtn" class="link" disabled>خروجی CSV</button></div>
-<div class="filters"><button class="filter active" data-filter="all">همه</button><button class="filter" data-filter="matched">موجود</button><button class="filter" data-filter="missing">مفقود</button><button class="filter" data-filter="extra">اضافی</button></div>
-<div id="results" class="results empty">ابتدا صفحه دوره را شناسایی و سپس پوشه را انتخاب کن.</div></section>
-<section class="card"><div class="head"><h2>قرنطینه فایل‌های اضافی</h2><span class="pill">با انتخاب مقصد</span></div>
-<p class="muted">فایل‌های اضافی را انتخاب کن و مقصد قرنطینه را مشخص کن. فایل اصلی فقط پس از کپی موفق و بررسی اندازه حذف می‌شود.</p>
-<div class="row"><button id="selectAllExtra" class="btn small secondary" disabled>انتخاب همه اضافی‌ها</button><button id="destBtn" class="btn small secondary">انتخاب پوشه مقصد</button></div>
-<div id="destMeta" class="muted">مقصد انتخاب نشده؛ در صورت نیاز می‌توانی پوشه‌ای جداگانه انتخاب کنی.</div>
-<button id="quarantineBtn" class="btn danger" disabled>انتقال موارد انتخاب‌شده به قرنطینه</button>
-<div id="quarantineMeta" class="muted">هیچ فایلی جابه‌جا نشده است.</div></section>
-<section class="card"><div class="head"><h2>سوابق قرنطینه</h2><button id="refreshQuarantine" class="link">به‌روزرسانی</button></div><div id="quarantineList" class="results empty">هنوز سابقه‌ای ثبت نشده است.</div></section>
-<footer>Spot Cleaner 0.2.3 · پردازش محلی در مرورگر</footer><div id="notice" class="notice" role="status"></div>
-</main><script src="popup.js"></script></body></html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Spot Cleaner</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <img src="icons/icon48.png" class="logo" alt="Spot Cleaner">
+      <div>
+        <h1>Spot Cleaner</h1>
+        <p>تطبیق و مدیریت فایل‌های SpotPlayer</p>
+      </div>
+      <span class="version">0.2.3</span>
+    </header>
+
+    <section class="card">
+      <div class="head">
+        <h2>دوره شناسایی‌شده</h2>
+        <span id="pageState" class="pill">در انتظار</span>
+      </div>
+      <div id="courseTitle" class="course">برای شروع، صفحه یک دوره SpotPlayer را باز کن.</div>
+      <div id="courseMeta" class="muted">جلسات پس از شناسایی صفحه نمایش داده می‌شوند.</div>
+      <button id="extractBtn" class="btn secondary">↻　شناسایی دوباره صفحه</button>
+    </section>
+
+    <section class="card">
+      <h2>بررسی فایل‌ها</h2>
+      <p class="muted">پوشه اصلی فایل‌های SPOT را انتخاب کن. زیرپوشه‌ها نیز بررسی می‌شوند.</p>
+      <button id="folderBtn" class="btn primary">▣　انتخاب پوشه و بررسی</button>
+      <div id="folderMeta" class="muted">هنوز پوشه‌ای انتخاب نشده است.</div>
+    </section>
+
+    <section id="summary" class="stats hidden">
+      <div><b id="matchedCount">0</b><span>موجود</span></div>
+      <div><b id="missingCount">0</b><span>مفقود</span></div>
+      <div><b id="extraCount">0</b><span>اضافی</span></div>
+    </section>
+
+    <section class="card">
+      <div class="head">
+        <h2>نتایج تطبیق</h2>
+        <button id="csvBtn" class="link" disabled>خروجی CSV</button>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-filter="all">همه</button>
+        <button class="filter" data-filter="matched">موجود</button>
+        <button class="filter" data-filter="missing">مفقود</button>
+        <button class="filter" data-filter="extra">اضافی</button>
+      </div>
+      <div id="results" class="results empty">ابتدا صفحه دوره را شناسایی و سپس پوشه را انتخاب کن.</div>
+    </section>
+
+    <section class="card">
+      <div class="head">
+        <h2>قرنطینه فایل‌های اضافی</h2>
+        <span class="pill">با انتخاب مقصد</span>
+      </div>
+      <p class="muted">فایل‌های اضافی را انتخاب کن و مقصد قرنطینه را مشخص کن. فایل اصلی فقط پس از کپی موفق و بررسی اندازه حذف می‌شود.</p>
+      <div class="row">
+        <button id="selectAllExtra" class="btn small secondary" disabled>انتخاب همه اضافی‌ها</button>
+        <button id="destBtn" class="btn small secondary">انتخاب پوشه مقصد</button>
+      </div>
+      <div id="destMeta" class="muted">مقصد انتخاب نشده؛ در صورت نیاز می‌توانی پوشه‌ای جداگانه انتخاب کنی.</div>
+      <button id="quarantineBtn" class="btn danger" disabled>انتقال موارد انتخاب‌شده به قرنطینه</button>
+      <div id="quarantineMeta" class="muted">هیچ فایلی جابه‌جا نشده است.</div>
+    </section>
+
+    <section class="card">
+      <div class="head">
+        <h2>سوابق قرنطینه</h2>
+        <button id="refreshQuarantine" class="link">به‌روزرسانی</button>
+      </div>
+      <div id="quarantineList" class="results empty">هنوز سابقه‌ای ثبت نشده است.</div>
+    </section>
+
+    <footer class="app-footer">
+      <a class="github-link" href="https://github.com/SajjadFashaei/SpotCleaner"
+         target="_blank" rel="noopener noreferrer" title="مشاهده پروژه در GitHub"
+         aria-label="مشاهده پروژه Spot Cleaner در GitHub">
+        <svg class="github-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.08c-3.1.67-3.76-1.32-3.76-1.32-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.15a10.6 10.6 0 0 1 5.55 0c2.11-1.45 3.05-1.15 3.05-1.15.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.61 5.23-5.1 5.51.4.35.75 1.03.75 2.08v3.09c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/>
+        </svg>
+        <span>مشاهده پروژه در GitHub</span>
+      </a>
+      <span class="footer-meta">Spot Cleaner 0.2.3 · پردازش محلی در مرورگر</span>
+    </footer>
+
+    <div id="notice" class="notice" role="status"></div>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
